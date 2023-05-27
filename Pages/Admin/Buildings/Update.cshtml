@@ -1,0 +1,31 @@
+@page
+@model UpdateModel
+@{
+    ViewData["Title"] = "(Admin) Buildings - Update";
+}
+
+<h1 class="heading1">Update Building</h1>
+<div class="box2">
+    <form method="post" enctype="multipart/form-data">
+        <label asp-for="Building.Name">@Html.DisplayNameFor(model => model.Building.Name)</label>
+        <input asp-for="Building.Name" class="form-control" readonly/>
+        <span asp-validation-for="Building.Name"></span>
+
+        <label asp-for="Image">@Html.DisplayNameFor(model => model.Image)</label>
+        <input asp-for="Image" class="form-control"/>
+        <span asp-validation-for="Image"></span>
+
+        <label asp-for="Building.CampusName">@Html.DisplayNameFor(model => model.Building.CampusName)</label>
+        <select asp-for="Building.CampusName">
+            @foreach (var campus in await Model.CampusRepository.SelectAll())
+            {
+                <option value="@campus.Name">@campus.Name</option>
+            }
+        </select>
+        <span asp-validation-for="Building.CampusName"></span>
+
+        <button class="btn button btn-secondary btn-success">Update</button>
+    </form>
+    
+    @Html.ValidationMessage("Database")
+</div>

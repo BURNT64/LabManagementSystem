@@ -1,0 +1,48 @@
+﻿@page
+@using LabManagementSystem.API.ActiveDirectory
+@model LabManagementSystem.Pages.Admin.Staff.IndexModel
+@{
+    ViewData["Title"] = "(Admin) Staff - Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h1 class="heading1">Staff</h1>
+<div class="buttonadd">
+    <button class="btn button btn-secondary btn-success"><a class="text-white" asp-page="Create">Add new staff member</a></button>
+</div>
+
+<div class="contacts">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Staff Member</th>
+                    <th>Role</th>
+                    <th>Email Address</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var staff in await Model.StaffRepository.SelectAll())
+                {
+                    var user = await Model.ActiveDirectoryUserRepository.GetUser(staff.UserObjectId);
+                    if (user == null) continue;
+
+                    string fullName = user.GivenName + " " + user.Surname;
+                    string role = staff.Role;
+                    string emailAddress = ActiveDirectoryUserRepository.GetUserEmail(user);
+
+                    <tr>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@fullName</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@role</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@emailAddress</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4"><a asp-page="Update" asp-route-userObjectId="@staff.UserObjectId">Edit</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

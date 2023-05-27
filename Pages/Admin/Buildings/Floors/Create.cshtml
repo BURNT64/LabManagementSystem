@@ -1,0 +1,26 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "(Admin) Building Floors - Create";
+}
+<script language='javascript'>
+
+    function submitted() { alert('Submitted'); }
+
+</script>
+<h1 class="heading1">Add Building</h1>
+<div class="box2">
+    <form method="post" enctype="multipart/form-data" onsubmit="return(submitted())" >
+        <label asp-for="Floor.Name">@Html.DisplayNameFor(model => model.Floor.Name)</label>
+        <input asp-for="Floor.Name" class="form-control"/>
+        <span asp-validation-for="Floor.Name"></span>
+
+        <input type="hidden" asp-for="Floor.BuildingName"/>
+        
+        <label asp-for="MapImage">@Html.DisplayNameFor(model => model.MapImage)</label>
+        <input asp-for="MapImage" class="form-control"/>
+        <span asp-validation-for="MapImage"></span>
+
+        <button class="btn button btn-secondary btn-success">Create</button>
+    </form>
+</div>

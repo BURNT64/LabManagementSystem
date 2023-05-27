@@ -1,0 +1,368 @@
+.container-fluid {
+    /* adds padding to bottom of imgs */
+    padding-bottom: 100px !important;
+}
+
+.col {
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+    .col:hover .image-overlayer {
+        background: linear-gradient(to bottom right, rgba(23, 14, 14, 0.32), rgba(23, 14, 14, 0.0));
+    }
+
+    .col:hover .image-container img {
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+
+    .col:hover .image-text {
+        -webkit-transform: scale(1.1, 1.1);
+        transform: scale(1.1, 1.1);
+    }
+
+.padder{
+    padding-top:40px;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+    .image-container img {
+        display: block;
+        width: 100%;
+        height: 300px;
+        transition-duration: 0.2s;
+        z-index: 10;
+        border-radius: 8px;
+    }
+
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom right, rgba(23, 14, 14, 0.78), rgba(23, 14, 14, 0.32));
+    text-align: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    transition-duration: 0.2s;
+    z-index: 15;
+    border-radius: 8px;
+    transition: opacity 0.3s ease-in-out; /* add a transition effect to the overlay */
+    opacity: 1; /* set initial opacity to 1 */
+}
+
+.image-text {
+    z-index:99;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    /*background-color: rgba(0, 0, 0, 0.7);*/
+    padding: 10px;
+}
+
+.image-container:hover .image-overlay {
+    opacity: 0;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+@media (max-width: 768px) {
+    .d-flex, .flex-column, .flex-md-row
+{
+    margin: auto;
+    text-align: center;
+    margin-left: 50px;
+}
+
+}
+
+@media (max-width: 768px) {
+    .col {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logout-button {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .image-text {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .image-text {
+        font-size: 18px;
+    }
+}
+
+
+/* Style for labels */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Style for form inputs */
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+input[id="eq_quantity"] {
+    width: 50%;
+    margin: auto;
+}
+
+.input-group-text{
+    background-color:transparent;
+}
+
+.quantity {
+    width:50px;
+    margin:auto;
+}
+
+.EquipBtn {
+    color: #74ab62;
+}
+/* Style for form validation summary */
+.validation-summary-errors {
+    color: red;
+    margin-bottom: 10px;
+}
+
+/* Style for the submit button */
+button.btn-success {
+    background-color: #74ab62;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button.btn-success2 {
+    background-color: #74ab62;
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    /*margin-top: 7px;*/
+}
+
+    button.btn-success:hover {
+        background-color: #218838;
+    }
+
+
+/* Style for the submit button */
+button.btn-Delete {
+    background-color: #74ab62;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.btn-Delete2 {
+    background-color: #74ab62;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 7px;
+}
+
+button.btn-Delete:hover {
+    background-color: #218838;
+}
+/*Style for back to list button*/
+.btn-back {
+    background-color: #74ab62;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+    .btn-back:hover {
+        background-color: #218838;
+
+    }
+
+
+input[type="checkbox"] {
+    transform: scale(1.8);
+}
+
+
+.my-label {
+    font-weight:normal;
+    
+}
+    .my-label span {
+        display: inline-block;
+        padding-left: 10px;
+    }
+
+input[type="date"], input[type="time"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 8px;
+    width: 100%;
+    
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-left: 20px; 
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.table-container {
+    margin-bottom: 20px;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    /*border: 1px solid #dddddd;*/
+    /*text-align: left;*/
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+.align-right {
+    text-align: right;
+    margin-left:-30px;
+}
+
+/*th {
+    font-weight: normal;
+}*/
+
+/* CSS for the "Approve" button */
+.btn-approve {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+    .btn-approve:hover {
+        background-color: #45a049;
+    }
+
+/* CSS for the "Decline" button */
+.btn-decline {
+    background-color: #f44336;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+    .btn-decline:hover {
+        background-color: #d32f2f;
+    }
+
+.action-buttons {
+    display: flex;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 17px;
+}
+
+.btn-approve,
+.btn-decline {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.sub-heading {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.readonly-textbox {
+    margin-bottom: 20px;
+}
+
+.readonly-textbox {
+    margin-bottom: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+

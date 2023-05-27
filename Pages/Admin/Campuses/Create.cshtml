@@ -1,0 +1,21 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "(Admin) Campuses - Create";
+}
+<script language='javascript'>
+
+    function submitted() { alert ('Submitted');  }
+
+</script>
+
+<div class="box2">
+    <form method="post" onsubmit="return(submitted())">
+        <label asp-for="Campus.Name">@Html.DisplayNameFor(model => model.Campus.Name)</label>
+        <input asp-for="Campus.Name" class="form-control"/>
+        
+        <span asp-validation-for="Campus.Name"></span>
+        
+        <button class="btn-success" >Create</button>
+    </form>
+</div>

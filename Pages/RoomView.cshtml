@@ -1,0 +1,46 @@
+﻿@page
+@model LabManagementSystem.Pages.RoomViewModel
+@{
+    ViewData["Title"] = "View Room";
+}
+
+<div class="container">
+    <div class="">
+        <h5 class="heading1">@Html.DisplayFor(modelItem => Model.Room.Code) - @Html.DisplayFor(modelItem => Model.Room.Code)</h5>
+    </div>
+    
+    <div class="row d-flex flex-column flex-wrap flex-md-row justify-content-start">
+        <div class="col box3">
+            <div class="">
+                <img src="~/images/Contact.jpg" class="img-fluid" alt="Panoramic" />
+            </div>
+        </div>
+        <div class="col">
+            <div class="box3">
+                <h5>Lab Timetable</h5>
+                <p class="responsive-p"><a href=@Model.Room.TimetableUrl target="_blank">@Model.Room.TimetableUrl</a></p>
+            </div>
+
+            <div class="box3">
+                <h5>Equipment in Room</h5>
+                @foreach (var item in Model.Room.Equipment)
+                {
+                    <p class="responsive-p"><a asp-page="./Equipment/ViewEquipment" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Name)</a></p>
+                }
+            </div>
+
+            <div class="box3">
+                <h5>Room Documentation</h5>
+                @foreach (var item in Model.Room.DocumentationFiles)
+                {
+                    <p class="responsive-p"> <a asp-page-handler="DownloadFile" asp-route-Id="@item.Id"> @item.Name</a></p>
+                }
+
+                @foreach (var item in Model.Room.DocumentationUrls)
+                {
+                    <p class="responsive-p"><a href=@item.Url target="_blank">@item.Url</a></p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

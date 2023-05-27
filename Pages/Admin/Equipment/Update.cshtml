@@ -1,0 +1,58 @@
+﻿@page
+@model UpdateModel
+@{
+    ViewData["Title"] = "(Admin) Equipment - Update";
+}
+
+<h1 class="Headings-marg">Update Equipment</h1>
+<script language='javascript'>
+
+    function beforeDelete() { return (confirm('Are you sure you want to delete the selected equipment?')); }
+
+</script>
+<div>
+    <form method="post" asp-page-handler="Delete">
+        <button class="btn delete btn-secondary text-color" name="equipmentId" onclick="return(beforeDelete())" value="@Model.Equipment.Id">Delete</button>
+    </form>
+</div>
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Equipment.Id">
+    
+        <label asp-for="Equipment.Name">@Html.DisplayNameFor(model => model.Equipment.Name)</label>
+        <input asp-for="Equipment.Name" class="form-control"/>
+        <span asp-validation-for="Equipment.Name"></span>
+        
+        <label asp-for="CustodianEmailAddress">@Html.DisplayNameFor(model => model.CustodianEmailAddress)</label>
+        <input asp-for="CustodianEmailAddress" class="form-control"/>
+        <span asp-validation-for="CustodianEmailAddress"></span>
+
+        <label asp-for="Equipment.GeneralInfo">@Html.DisplayNameFor(model => model.Equipment.GeneralInfo)</label>
+        <input asp-for="Equipment.GeneralInfo" class="form-control"/>
+        <span asp-validation-for="Equipment.GeneralInfo"></span>
+
+        <label asp-for="Equipment.LocationRoomCode">@Html.DisplayNameFor(model => model.Equipment.LocationRoomCode)</label>
+        <select asp-for="Equipment.LocationRoomCode" class="form-control">
+            @foreach (var room in await Model.RoomRepository.SelectAll())
+            {
+
+                <option value="@room.Code">@room.Code</option>
+            }
+        </select>
+        <span asp-validation-for="Equipment.LocationRoomCode"></span>
+
+        <label asp-for="Equipment.DocumentationUrl">@Html.DisplayNameFor(model => model.Equipment.DocumentationUrl)</label>
+        <input asp-for="Equipment.DocumentationUrl" class="form-control"/>
+        <span asp-validation-for="Equipment.DocumentationUrl"></span>
+
+        <label asp-for="File">@Html.DisplayNameFor(model => model.File)</label>
+        <input asp-for="File" class="form-control"/>
+        <span asp-validation-for="File"></span>
+
+        <label asp-for="Image">@Html.DisplayNameFor(model => model.Image)</label>
+        <input asp-for="Image" class="form-control"/>
+        <span asp-validation-for="Equipment.Image"></span>
+
+        <button class="btn-success">Update</button>
+    </form>
+</div>

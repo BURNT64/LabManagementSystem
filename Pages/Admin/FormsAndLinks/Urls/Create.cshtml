@@ -1,0 +1,26 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "(Admin) Form Category - Create URL";
+}
+<script language='javascript'>
+
+    function submitted() { alert('Submitted'); }
+
+</script>
+<h1 class="heading1">Add URL</h1>
+<div class="box2">
+    <form method="post" enctype="multipart/form-data" onsubmit="return(submitted())">
+        <input type="hidden" asp-for="FormDocumentationUrl.CategoryName">
+
+        <label asp-for="FormDocumentationUrl.Url">@Html.DisplayNameFor(model => model.FormDocumentationUrl.Url)</label>
+        <input asp-for="FormDocumentationUrl.Url" class="form-control"/>
+        <span asp-validation-for="FormDocumentationUrl.Url"></span>
+
+        <label asp-for="FormDocumentationUrl.Name">@Html.DisplayNameFor(model => model.FormDocumentationUrl.Name)</label>
+        <input asp-for="FormDocumentationUrl.Name" class="form-control"/>
+        <span asp-validation-for="FormDocumentationUrl.Name"></span>
+
+        <button class="btn-success">Add</button>
+    </form>
+</div>

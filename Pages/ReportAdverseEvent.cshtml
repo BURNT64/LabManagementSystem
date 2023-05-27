@@ -1,0 +1,539 @@
+﻿@page
+@model ReportAdverseEventModel
+@{
+    ViewData["Title"] = "Report Adverse Event";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div class="margin-body">
+        <h1 class="heading1">Report an Adverse Event</h1>
+
+        <div class="eventinfo">
+            <i class="uil uil-info-circle infocon"></i>
+            <ul>
+                <li>
+                    <h5> The Person who was involved or affected must complete the form themselves, unless physically unable to do so. The Section 7 signature is to be that of the affected person as set out in Section 1.</h5>
+                </li>
+                <li>
+                    <p>  Information on this form may be used for reporting injuries, diseases and dangerous occurrences to the Health & Safety Executive.</p>
+                </li>
+                <li>
+                    <p>Information on this form may be passed to University Management, the original and copies are to be in accordance with the Data Protection Act.</p>
+
+                </li>
+            </ul>
+
+            <h5>Why are so many details needed?</h5>
+            <P>
+                We need to understand what happened, to whom (how to contact them so as to find out more, check on their welfare etc.), where and then; who was responsible for the work activity / property involved so that it can be fully investigated so as to find out why it happened and put action in place to prevent it happening again. If we don't know all the details we will have to make follow up calls and it may delay an investigation being undertaken or a further report being made.
+            </P>
+        </div>
+
+
+        <div class="container">
+            <form action="https://getform.io/f/c3d08807-1708-4a59-aab3-4e9c1eee1e27" method="POST">
+                <div>
+
+
+                <section class="box">
+                    <h5>Affected Person</h5>
+                    <hr />
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="affected_name">Name</label>
+                                    <input type="text" name="Name of Affected" id="fname" class="form-width" placeholder="Name" required>
+                            </div>
+                            <div class="col">
+                            </div>
+                        </div>
+                    </div>
+
+                 
+                    <!--
+
+                    gender and age come back to it
+
+
+                    -->
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                    <label for="affected_address">Permanent home address</label>
+                                    <textarea placeholder="Permanent home address" class="form-control" id="address" name="affected_address" rows="5" required></textarea>
+                            </div>
+                            <div class="col">
+                                    <label for="affected_email">Email address</label>
+                                    <input type="email" name="Email of Affected" id="email" class="form-control" placeholder="Email address" required>
+                                <div>
+                                    <label for="phone">Phone number</label>
+                                        <input type="number" name="Phone Number of Affected" id="phone" class="form-control" placeholder="Phone number" required>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--
+                    status come back to it
+                    -->
+
+                    <div class="form-group">
+                        <label for="fname">Status</label>
+                        <div class="row">
+                            <div class="col">
+                                <label class="my-label">
+                                        <input type="checkbox" name="status" value="university_staff">
+                                    <span> University staff</span>
+                                </label>
+                                </div>
+                            <div class="col">
+                                <label class="my-label">
+                                        <input type="checkbox" name="status" value="student">
+                                    <span> Student</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="my-label">
+                                        <input type="checkbox" name="status" value="visatwork">
+                                    <span> Visitor - at work</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="my-label">
+                                        <input type="checkbox" name="status" value="visanotatwork">
+                                    <span>Visitor - not at work</span>
+                                </label>
+                            </div>
+
+
+                                </div>
+                                </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="job">Job title</label>
+                                <input type="text" name="job" id="job" class="form-control" placeholder="Job title" required>
+                            </div>
+                            <div class="col">
+                                <label for="faculty">Faculty</label>
+                                    <input type="text" name="faculty" id="faculty" class="form-control" placeholder="Faculty" required>
+                            </div>
+                            <div class="col">
+                                    <label for="department">Department</label>
+                                    <input type="text" name="department" id="department" class="form-control" placeholder="Department" required>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </section>
+
+                <section class="box">
+                    <h5>About the Adverse Event</h5>
+                    <hr />
+                    <div class="form-group">
+                        <label for="event_name">Name of the event</label>
+
+                        <div class="row">
+                            <div class="col">
+                                <label class="my-label">
+                                        <input type="checkbox" name="Event Type" value="accident">
+                                    <span>Accident</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="my-label">
+                                        <input type="checkbox" name="Event Type" value="incident">
+                                    <span>Incident</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="my-label">
+                                        <input type="checkbox" name="Event Type" value="nearmiss">
+                                    <span>Near miss</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="my-label">
+                                        <input type="checkbox" name="Event Type" value="illness">
+                                    <span>Illness</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="my-label">
+                                        <input type="checkbox" name="Event Type" value="gas">
+                                    <span>Gas</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="form-group">
+                          <div class="row">
+                            <div class="col">
+                                <label for="date">Date</label>
+                                    <input type="date" id="date" name="Event Date">
+
+                            </div>
+                            <div class="col">
+                                <label for="time">Time</label>
+                                    <input type="time" id="time" name="Event Time">
+
+                            </div>
+                            <div class="col">   
+
+                            </div>
+                            <div class="col">
+                            </div> 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                        <label for="actevent">Activity at time of event</label>
+                                    <textarea placeholder="Activity at time of event" class="form-control" name="Activity at time of event" id="actevent" rows="5" required></textarea>
+                    </div>
+                            <div class="col">
+                            </div>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                        <label for="describe">Describe what happened</label>
+                                    <textarea placeholder="Describe what happened" class="form-control" name="Description of what happened" id="describe" rows="5" required></textarea>
+                    </div>
+                                    <div class="col">
+                            </div>
+                                    </div>
+                                    </div>
+                    <!--
+                        come back back to work related and source of adverse event
+
+
+
+                    -->
+
+                    <hr/>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="myInput">Campus/Location of adverse event</label>
+                                <select id="myInput" name="campus">
+                                    <option value="" disabled selected>select a campus/Location of adverse event</option>
+                                        @foreach (var campus in await Model.CampusRepository.SelectAll())
+                                        {
+                                            <option value="@campus.Name">@campus.Name</option>
+                                        }
+                                    
+                                </select>
+                            </div>
+                            <div class="col">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="location">Place & exact location of event</label>
+                                    <input type="text" name="Specific location" id="location" class="form-width" placeholder="Name" required>
+                            </div>
+                            <div class="col">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+                <!--    WITNESS FORM    -->
+                <section class="box">
+
+                        <div id="witnesses">
+                            <div class="witness">
+                    <h5>Witness Information</h5>
+                    <p>Please fill this form only if it was an accident.</p>
+                    <hr />
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="wname">Name</label>
+                                            <input type="text" name="witness name" id="wname" class="form-width" placeholder="Name" >
+                            </div>
+                            <div class="col">
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="waddress">Home address</label>
+                                            <textarea placeholder="Home address" class="form-control" name="witness address" id="waddress" rows="5" ></textarea>
+                            </div>
+                            <div class="col">
+                                <label for="wemail">Email address</label>
+                                            <input type="email" name="witness email" id="wemail" class="form-control" placeholder="Email address" >
+                                <div>
+                                    <label for="wphone">Phone number</label>
+                                                <input type="number" name="witness phone number" id="wphone" class="form-control" placeholder="Phone number" >
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group">
+                        <label for="fname">Status</label>
+                        <div class="row">
+                            <div class="col">
+                                <label class="my-label">
+                                                <input type="checkbox" name="status2" value="University_Staff">
+                                    <span> University staff</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="my-label">
+                                                <input type="checkbox" name="status2" value="University_Student">
+                                    <span> Student</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="my-label">
+                                                <input type="checkbox" name="status2" value="Working_Visitor">
+                                    <span> Visitor - at work</span>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label class="my-label">
+                                                <input type="checkbox" name="status2" value="Not_Working_Visitor">
+                                    <span>Visitor - not at work</span>
+                                </label>
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="wjob">Job title</label>
+                                            <input type="text" name="witness job" id="wjob" class="form-control" placeholder="Job title">
+                            </div>
+                            
+                            <div class="col">
+                                
+                            </div>
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                <label for="wfaculty">Faculty</label>
+                                            <input type="text" name="witness faculty" id="wfaculty" class="form-control" placeholder="Faculty">
+                            </div>
+                            <div class="col">
+                                <label for="wdepartment">Department</label>
+                                            <input type="text" name="witness department" id="wdepartment" class="form-control" placeholder="Department">
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <hr />
+                    
+                    <div class="buttonadd">
+                        <button class="btn button btn-secondary btn-success" id="add-witness-btn">Add another witness</button>
+                    </div>
+                    
+                     </div>
+                        </div>
+
+                </section>
+
+                    <!--    END WITNESS FORM    -->
+
+                <section class="box">
+                    <h5>Other important information</h5>
+                    <hr />
+                    <div>
+                        <label for="details">Provide any other important details/use to complete details from above sections:</label>
+                            <textarea class="form-control" name="details" id="details" rows="5" required></textarea>
+                    </div>
+
+                </section>
+
+                <section class="box">
+                    <h5>Declaration</h5>
+                    <p>To be completed by the affected person as set out in Section 1 'Affected Person Information'</p>
+                    <hr />
+                    <div>
+                        <label class="my-label">
+                            <input type="checkbox" name="declaration" value="declaration" required>
+                            <span> I declare that the above statement are true and to the best of my knowledge</span>
+                        </label>
+                        </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col">
+                                <label for="pname">Print name</label>
+                                    <input type="text" name="Print Name" id="pname" class="form-width" required>
+                            </div>
+                            <div class="col">
+                                <label for="pdate">Date</label>
+                                <input type="date" id="pdate" name="Print Date" required>
+                                </div>
+                            <div class="col">
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                </section>
+                </div>
+                <button type="submit" class="btn button btn-secondary btn-success">Submit Form</button>
+                
+            </form>
+        </div>
+    </div>
+
+    <script>
+       let witnessId = 0; 
+        const addWitnessBtn = document.getElementById('add-witness-btn');
+        const witnessesDiv = document.getElementById('witnesses');
+
+       
+        let id = 0;
+        
+        addWitnessBtn.addEventListener('click', () => {
+            id++;
+            const newWitnessDiv = document.createElement('div');
+            newWitnessDiv.className = 'witness';
+            newWitnessDiv.innerHTML = `
+                    <h5>Witness Information</h5>
+                            <hr />
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="fname">Name</label>
+                                        <input type="text" name="Witness ` + id + ` name" class="form-width" placeholder="Name" required>
+                                    </div>
+                                    <div class="col">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="fname">Home address</label>
+                                        <textarea placeholder="Home address" class="form-control" name="Witness ` + id + ` Home address" rows="5" required></textarea>
+                                    </div>
+                                    <div class="col">
+                                        <label for="fname">Email address</label>
+                                        <input type="email" name="Witness ` + id + ` email" class="form-control" placeholder="Email address" required>
+                                        <div>
+                                            <label for="fname">Phone number</label>
+                                            <input type="number" name="Witness ` + id + ` phone number" class="form-control" placeholder="Phone number" required>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="fname">Status</label>
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="my-label">
+                                            <input type="checkbox" name="Witness ` + id + ` tickbox">
+                                            <span> University staff</span>
+                                        </label>
+                                    </div>
+                                    <div class="col">
+                                        <label class="my-label">
+                                            <input type="checkbox" name="Witness ` + id + ` tickbox">
+                                            <span> Student</span>
+                                        </label>
+                                    </div>
+                                    <div class="col">
+                                        <label class="my-label">
+                                            <input type="checkbox" name="Witness ` + id + ` tickbox">
+                                            <span> Visitor - at work</span>
+                                        </label>
+                                    </div>
+                                    <div class="col">
+                                        <label class="my-label">
+                                            <input type="checkbox" name="Witness ` + id + ` tickbox">
+                                            <span>Visitor - not at work</span>
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="fname">Job title</label>
+                                        <input type="text" name="witness ` + id + ` Job Title" class="form-control" placeholder="Job title" required>
+                                    </div>
+
+                                    <div class="col">
+
+                                    </div>
+                                    </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col">
+                                        <label for="fname">Faculty</label>
+                                        <input type="text" name="Witness ` + id + ` Faculty" class="form-control" placeholder="Faculty" required>
+                                    </div>
+                                    <div class="col">
+                                        <label for="fname">Department</label>
+                                        <input type="text" name="Witness ` + id + ` Department" class="form-control" placeholder="Department" required>
+                                    </div>
+
+
+                                </div>
+                            </div>
+<div class="buttonremove">
+                        <button class="btn button btn-secondary btn-success" id="remove-witness-btn` + id + `">Remove witness</button>
+                        </div>
+                            <hr />
+          `;
+            witnessesDiv.appendChild(newWitnessDiv);
+            const removeWitnessBtn = document.getElementById('remove-witness-btn' + id);
+
+            removeWitnessBtn.addEventListener('click', () => {
+                                    witnessesDiv.removeChild(newWitnessDiv);
+                                });
+        });
+
+    </script>
+</body>
+</html>

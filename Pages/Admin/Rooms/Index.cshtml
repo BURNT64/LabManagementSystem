@@ -1,0 +1,64 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "(Admin) Rooms - Index";
+}
+
+<h1 class="heading1">Rooms</h1>
+<script language='javascript'>
+
+    function beforeDelete() { return (confirm('Are you sure you want to delete the selected room?')); }
+
+</script>
+<div class="buttonadd">
+    <button class="btn button btn-secondary btn-success"><a class="text-white" asp-page="Create">Add Room</a></button>
+</div>
+
+<div class="contacts">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Building</th>
+                    <th>Floor</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var room in await Model.RoomRepository.SelectAll())
+                {
+                    <tr>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@room.Code</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@room.Name</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@room.Floor.BuildingName</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@room.Floor.Name</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">
+                            <a href="@room.TimetableUrl">
+                                @if (room.TimetableUrl == null)
+                                {
+                                    @:No Timetable
+                                }
+                                else
+                                {
+                                    @:Timetable
+                                }
+                            </a>
+                        </td>
+                        <td class="col-xs-4 col-sm-4 col-md-4"><a asp-page="Update" asp-route-roomCode="@room.Code">Edit</a></td>
+                        <td class="col-xs-4 col-sm-4 col-md-4"><a asp-page="Documentation/Index" asp-route-roomCode="@room.Code">Edit Documentation</a></td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">
+                            <form method="post" asp-page-handler="Delete">
+                                <button class="btn-secondary btn-success" name="roomCode" onclick="return(beforeDelete())" value="@room.Code">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,177 @@
+﻿@page
+@using LabManagementSystem.API.ActiveDirectory
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ReadModel
+@{
+    ViewData["Title"] = "Equipment - Read";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h1 class="heading1">Equipment</h1>
+    <div class=" viewwidth">
+    <div class="row">
+    @if (User.IsInRole(Role.Administrator))
+             {
+                 <div class="col">
+                     <button class="btn btn-success btn-secondary"><a asp-page="/Admin/Equipment/Update" asp-route-equipmentId="@Model.Equipment.Id" class="text-white">Edit Equipment</a></button>
+                 </div>
+             }
+    </div>
+    </div>
+    <section class="container">
+        <div class="row">
+            <div class="col imgecol">
+                <div class="second-heading">
+                    @{
+                        if (Model.Equipment.Image != null)
+                        {
+                            string pictureSrc = $"data:image/jpeg;base64,{Convert.ToBase64String(Model.Equipment.Image)}";
+                            <img  src="@pictureSrc" alt="imgview" class="building-img">
+                        }
+                    }
+                </div>
+        </div>
+            <div class="col">
+                <div class="second-heading">
+        <h3>Details</h3> 
+
+
+            <hr />
+
+                    <div>
+                        <h4>Location</h4>
+                        @Html.DisplayFor(modelItem => Model.Equipment.LocationRoom.Name)
+                    
+                    </div>
+                    <div>
+                        <h4>Custodian</h4>
+                        @{
+                            var custodianUser = await Model.ActiveDirectoryUserRepository.GetUser(Model.Equipment.CustodianUserObjectId);
+                            string custodianFullName = custodianUser != null ? custodianUser.GivenName + " " + custodianUser.Surname : "Unknown";
+                        }
+                        
+                        @custodianFullName
+                    </div>
+                    
+            <div>
+                <h4>General Info</h4>
+                @Html.DisplayFor(modelItem => Model.Equipment.GeneralInfo)
+            </div>
+            @{
+                if (Model.Equipment.DocumentationFile != null)
+                {
+                    <div>
+                        <h4>Documentation File</h4>
+                        <div>
+                            <a asp-page-handler="DownloadFile" target="_blank" asp-route-equipmentId="@Model.Equipment.Id">Download File</a>
+                        </div>
+                    </div>
+                }
+
+                if (Model.Equipment.DocumentationUrl != null)
+                {
+                    <div>
+                        <h4>Documentation URL</h4>
+                        <a href="@Model.Equipment.DocumentationUrl" target="_blank">Visit URL</a>
+                    </div>
+                }
+            }
+
+
+
+
+            @*          
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.name)
+                    <input asp-for="name" class="form-control" readonly/>
+                </dt>
+                <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.FullName)
+                <input asp-for="FullName" class="form-control" readonly />
+                </dt>
+                <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.GeneralInfo)
+                 <input asp-for="GeneralInfo" class="form-control" readonly />
+                </dt>
+                <dt class="col-sm-2">
+                <a> asp-page="/">Documentation</a>
+                </dt>*@
+                
+            
+            </div>
+        </div>
+        </div>
+    </section>
+    <section class="second-heading labo">
+        <div class="row">
+        <div class="col">
+        <h5>Log book</h5>
+        
+            
+        </div>
+        <div>
+            <form method="post" enctype="multipart/form-data" asp-route-equipmentId="@Model.Equipment.Id">
+                <label asp-for="LogbookEntry">@Html.DisplayNameFor(model => model.LogbookEntry.Comment)</label>
+                <input asp-for="LogbookEntry.Comment" class="form-control" />
+                <span asp-validation-for="LogbookEntry.Comment"></span>
+                
+                <button class="btn-success">Submit Comment</button>
+            </form>
+
+
+        </div>
+        <hr />
+        <div class="Table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date </th>
+                        <th>User</th>
+                        <th>Comment</th>
+                        @{
+                            if (User.IsInRole(Role.Administrator))
+                            {
+                                <th></th>
+                            }
+                        }
+                    </tr>
+                </thead>
+                <!--Allows users to add information to the database-->
+                @foreach (var logbookEntry in Model.Equipment.LogbookEntries)
+                {
+                        var user = await Model.ActiveDirectoryUserRepository.GetUser(logbookEntry.UserObjectId);
+                        if (user == null) continue;
+                        string fullName = user.GivenName + " " + user.Surname;
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => logbookEntry.Date)
+                        </td>
+                        <td>
+                            @fullName
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => logbookEntry.Comment)
+                        </td>
+                        @{
+                            if (User.IsInRole(Role.Administrator))
+                            {
+                                <td>
+                                    <form method="post" asp-page-handler="DeleteLogbookEntry">
+                                        <input type="hidden" name="equipmentId" value="@Model.Equipment.Id"/>
+                                        <input type="hidden" name="logbookEntryId" value="@logbookEntry.Id"/>
+                                        <button class="btn-secondary btn-success">Delete</button>
+                                    </form>
+                                </td>
+                            }
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+        </div>
+    </section>   
+</body>
+</html>

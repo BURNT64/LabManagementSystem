@@ -1,0 +1,22 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "(Admin) Forms & Links - Create";
+}
+<script language='javascript'>
+
+    function submitted() { alert('Submitted'); }
+
+</script>
+<h1 class="heading1">Add Form Category</h1>
+<div class="box2">
+    <form method="post" onsubmit="return(submitted())">
+        <label asp-for="FormCategory.Name">@Html.DisplayNameFor(model => model.FormCategory.Name)</label>
+        <input asp-for="FormCategory.Name" class="form-control"/>
+        <span asp-validation-for="FormCategory.Name"></span>
+        
+        <button class="btn-success">Create</button>
+    </form>
+    
+    @Html.ValidationMessage("Database")
+</div>

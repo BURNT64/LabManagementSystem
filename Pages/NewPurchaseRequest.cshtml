@@ -1,0 +1,112 @@
+@page
+@model NewPurchaseRequestModel
+@{
+    ViewData["Title"] = "New Purchase Request";
+}
+
+<div>
+    <h1 class="heading1">New Purchase Request</h1>
+    <p>Request the university to purchase a new resource</p>
+</div>
+<form method="post" enctype="multipart/form-data">
+    <section class="box2">
+        <div id="items">
+            <div class="item">
+                <h4>Request Item</h4>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="RequesterEmailAddress">@Html.DisplayNameFor(model => model.RequesterEmailAddress)</label>
+                            <input asp-for="RequesterEmailAddress" class="form-control">
+                            <span asp-validation-for="RequesterEmailAddress"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="PurchaseRequest.ItemCode">@Html.DisplayNameFor(model => model.PurchaseRequest.ItemCode)</label>
+                            <input asp-for="PurchaseRequest.ItemCode" class="form-control">
+                            <span asp-validation-for="PurchaseRequest.ItemCode"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="PurchaseRequest.Description">@Html.DisplayNameFor(model => model.PurchaseRequest.Description)</label>
+                            <textarea asp-for="PurchaseRequest.Description" class="form-control" rows="5"></textarea>
+                            <span asp-validation-for="PurchaseRequest.Description"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="PurchaseRequest.UnitPrice">@Html.DisplayNameFor(model => model.PurchaseRequest.UnitPrice)</label>
+                            <input asp-for="PurchaseRequest.UnitPrice" class="form-control">
+                            <span asp-validation-for="PurchaseRequest.UnitPrice"></span>
+                        </div>
+                        <div class="col">
+                            <label asp-for="PurchaseRequest.Quantity">@Html.DisplayNameFor(model => model.PurchaseRequest.Quantity)</label>
+                            <input asp-for="PurchaseRequest.Quantity" class="form-control">
+                            <span asp-validation-for="PurchaseRequest.Quantity"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="PurchaseRequest.BudgetCode">@Html.DisplayNameFor(model => model.PurchaseRequest.BudgetCode)</label>
+                            <input asp-for="PurchaseRequest.BudgetCode" class="form-control">
+                            <span asp-validation-for="PurchaseRequest.BudgetCode"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="PurchaseRequest.DeliveryBuildingName">@Html.DisplayNameFor(model => model.PurchaseRequest.DeliveryBuildingName)</label>
+                            <select asp-for="PurchaseRequest.DeliveryBuildingName" class="form-control">
+                                @foreach (var building in await Model.BuildingRepository.SelectAll())
+                                {
+                                    <option value="@building.Name">@building.Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="PurchaseRequest.Supplier">@Html.DisplayNameFor(model => model.PurchaseRequest.Supplier)</label>
+                            <input asp-for="PurchaseRequest.Supplier" class="form-control">
+                            <span asp-validation-for="PurchaseRequest.Supplier"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="PurchaseRequest.Url">@Html.DisplayNameFor(model => model.PurchaseRequest.Url)</label>
+                            <input asp-for="PurchaseRequest.Url" class="form-control"/>
+                            <span asp-validation-for="PurchaseRequest.Url"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col">
+                            <label asp-for="PurchaseRequest.IsCOSHHRequired">@Html.DisplayNameFor(model => model.PurchaseRequest.IsCOSHHRequired)</label>
+                            <input asp-for="PurchaseRequest.IsCOSHHRequired">
+                            <span asp-validation-for="PurchaseRequest.IsCOSHHRequired"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div>
+        <button class="btn button btn-secondary btn-success">Submit</button>
+    </div>
+</form>

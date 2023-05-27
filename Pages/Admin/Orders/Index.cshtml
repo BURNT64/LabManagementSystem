@@ -1,0 +1,81 @@
+@page
+@using LabManagementSystem.API.ActiveDirectory
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IndexModel
+@{
+    ViewData["Title"] = "(Admin) Orders - Index";
+}
+
+<h1 class="heading1">Orders</h1>
+<div class="contacts">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Supplier</th>
+                    <th>Item Code</th>
+                    <th>Requester</th>
+                    <th>Date Ordered</th>
+                    <th>Predicted Delivery Date</th>
+                    <th>Delivery Building</th>
+                    <th>Delivered?</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in await Model.OrderRepository.SelectAll())
+                {
+                    var user = await Model.ActiveDirectoryUserRepository.GetUser(order.PurchaseRequest.RequesterObjectId);
+                    string emailAddress = user != null ? ActiveDirectoryUserRepository.GetUserEmail(user) : "Unknown";
+
+                    <tr>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@order.PurchaseRequest.Supplier</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@order.PurchaseRequest.ItemCode</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@emailAddress</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@order.Date.Day/@order.Date.Month/@order.Date.Year</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">
+                            @{
+                                if (order.PredictedDate != null)
+                                {
+                                    @:@order.PredictedDate.Value.Day/@order.PredictedDate.Value.Month/@order.PredictedDate.Value.Year
+                                }
+                                else
+                                {
+                                    @:None
+                                }
+                            }
+                        </td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@order.PurchaseRequest.DeliveryBuildingName</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">
+                            @{
+                                if (order.IsDelivered)
+                                {
+                                    @:Yes
+                                }
+                                else
+                                {
+                                    @:No
+                                }
+                            }
+                        </td>
+                        @{
+                            if (!order.IsDelivered)
+                            {
+                                <td class="col-xs-4 col-sm-4 col-md-4">
+                                    <form method="post" asp-page-handler="MarkDelivered">
+                                        <button name="requestId" value="@order.PurchaseRequestId">Mark Delivered</button>
+                                    </form>
+                                </td>
+                            }
+                        }
+                        <td class="col-xs-4 col-sm-4 col-md-4"><a asp-page="Update" asp-route-requestId="@order.PurchaseRequestId">Edit</a></td>
+                        <td class="col-xs-4 col-sm-4 col-md-4"><a asp-page="/Admin/PurchaseRequests/Read" asp-route-requestId="@order.PurchaseRequestId">View</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

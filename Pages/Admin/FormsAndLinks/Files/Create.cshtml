@@ -1,0 +1,26 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "(Admin) Form Category - Create File";
+}
+<script language='javascript'>
+
+    function submitted() { alert('Submitted'); }
+
+</script>
+<h1 class="heading1">Add File</h1>
+<div class="box2">
+    <form method="post" enctype="multipart/form-data" onsubmit="return(submitted())">
+        <input type="hidden" asp-for="FormDocumentationFile.CategoryName">
+
+        <label asp-for="File">@Html.DisplayNameFor(model => model.File)</label>
+        <input asp-for="File" class="form-control"/>
+        <span asp-validation-for="File"></span>
+
+        <label asp-for="FormDocumentationFile.Name">@Html.DisplayNameFor(model => model.FormDocumentationFile.Name)</label>
+        <input asp-for="FormDocumentationFile.Name" class="form-control"/>
+        <span asp-validation-for="FormDocumentationFile.Name"></span>
+
+        <button class="btn-success">Add</button>
+    </form>
+</div>

@@ -1,0 +1,30 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "(Admin) Buildings - Create";
+}
+<script language='javascript'>
+
+    function submitted() { alert('Submitted'); }
+
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<h1 class="heading1">Add Staff</h1>
+<div class="box2">
+    <form method="post" onsubmit="return(submitted())">
+        <label asp-for="EmailAddress">@Html.DisplayNameFor(model => model.EmailAddress)</label>
+        <input asp-for="EmailAddress" class="form-control"/>
+        <span asp-validation-for="EmailAddress"></span>
+        
+        <label asp-for="Staff.Role">@Html.DisplayNameFor(model => model.Staff.Role)</label>
+        <input asp-for="Staff.Role" class="form-control"/>
+        <span asp-validation-for="Staff.Role"></span>
+        
+        <button class="btn-success">Create</button>
+    </form>
+    
+    @Html.ValidationMessage("ActiveDirectory")
+    @Html.ValidationMessage("Database")
+</div>
+</html>

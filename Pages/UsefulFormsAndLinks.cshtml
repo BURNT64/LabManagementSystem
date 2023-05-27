@@ -1,0 +1,55 @@
+﻿@page
+@model LabManagementSystem.Pages.usefulform_linksModel
+@{
+    ViewData["Title"] = "Useful Forms & Links";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+
+<body>
+<h1 class="heading1">Useful forms and links</h1>
+
+    <div class="box3-container">
+@foreach (var formCategory in Model.FormCategories){
+        <div class=" box3">
+
+    <h5>@formCategory.Name</h5>
+   <hr />
+
+
+   
+           
+
+                <h5>Files</h5>
+                @foreach (var formFile in formCategory.DocumentationFiles)
+                {
+                    
+                        
+                            <div >
+                                       <a asp-page-handler="DownloadFile" asp-route-Id="@formFile.Id">@formFile.Name</a>
+                                       </div>
+                        
+                    
+                }
+                
+                <h5>Links</h5>
+                @foreach (var formLink in formCategory.DocumentationUrls)
+                {
+                    
+                        
+                        <div >
+                            <a href=@formLink.Url target="_blank">@formLink.Name</a>
+                        </div>
+                    
+                }
+                
+                
+        
+        </div>
+
+}
+    </div>
+</body>
+</html>

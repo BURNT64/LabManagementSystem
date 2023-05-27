@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "(Admin) Forms & Links - Index";
+}
+
+<h1 class="heading1">Forms & Links</h1>
+<div class="buttonadd">
+    <button class="btn button btn-secondary btn-success2"><a class="text-white" asp-page="Create">Add a new category</a></button>
+</div>
+
+<div class="contacts">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thread>
+                <tr>
+                    <th>Category</th>
+                    <th></th>
+                </tr>
+            </thread>
+            <tbody>
+                @foreach (var formCategory in await Model.FormCategoryRepository.SelectAll())
+                {
+                    <tr>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@formCategory.Name</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4 align-right"><a asp-page="Update" asp-route-categoryName="@formCategory.Name">Edit</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

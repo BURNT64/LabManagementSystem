@@ -1,0 +1,54 @@
+﻿@page
+@using LabManagementSystem.API.ActiveDirectory
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IndexModel
+@{
+    ViewData["Title"] = "Equipment - Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h1 class="heading1">Equipment</h1>
+<div class="row searchbar_add">
+    <div class="col">
+        <div class="input-group ">
+            <span class="input-group-text">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                </svg>
+            </span>
+            <input type="search" id="searchInput" placeholder="Search equipment" class="form-control" onkeyup="search()">
+        </div>
+    </div>
+
+    @if (User.IsInRole(Role.Administrator))
+    {
+        <div class="col">
+            <button class="btn button btn-secondary btn-success2">
+                <a asp-page="/Admin/Equipment/Create" class="text-white">Add new equipment</a>
+            </button>
+        </div>  
+    }
+</div>
+
+<div class="contacts">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Equipment</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var equipment in await Model.EquipmentRepository.SelectAll())
+            {
+                <tr>
+                    <td class="col-xs-4 col-sm-4 col-md-4">@equipment.Name</td>
+                    <td class="col-xs-4 col-sm-4 col-md-4 align-right"><a asp-page="Read" asp-route-equipmentId="@equipment.Id">View</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "(Admin) Campuses - Index";
+}
+
+<h1 class="heading1">Campuses</h1>
+<div class="button-container">
+    <div class="button-group">
+        <button class="btn button btn-secondary btn-success">
+            <a class="text-white" asp-page="/Admin/Campuses/Create">Add a new campus</a>
+        </button>
+    </div>
+</div>
+<div class="table-container">
+    <div class="contacts">
+        <div class="table-responsive">
+            <div class="table-sm">
+                <table class="table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Campus</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var campus in await Model.CampusRepository.SelectAll())
+                        {
+                            <tr>
+                                <td>@campus.Name</td>
+                                <td>
+                                    <script language='javascript'>                        
+                                        function beforeDelete() { return (confirm('Are you sure you want to delete the selected item? BEWARE, DELETING A CAMPUS WILL RESULT IN LARGE DATA LOSS!')); }
+                                    </script>
+ 
+                                    <form method="post" asp-page-handler="Delete">
+                                        <button type="submit" class="btn-Delete" OnClick="return(beforeDelete())" name="campusName" value="@campus.Name">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

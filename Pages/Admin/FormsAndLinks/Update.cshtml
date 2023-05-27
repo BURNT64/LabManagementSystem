@@ -1,0 +1,60 @@
+@page
+@model UpdateModel
+@{
+    ViewData["Title"] = "(Admin) Forms & Links - Update";
+}
+
+<h1 class="heading1">Update Form Category</h1>
+<script language='javascript'>
+    function beforeDelete() { return (confirm('Are you sure you want to delete the selected item?')); }
+</script>
+<div>
+    <form method="post" asp-page-handler="Delete">
+        <button class="btn delete btn-secondary text-color" name="categoryName" onclick="return(beforeDelete())" value="@Model.FormCategory.Name">Delete Category</button>
+    </form>
+</div>
+<h2>Files</h2>
+@foreach (var documentationFile in Model.FormCategory.DocumentationFiles)
+{
+    <section class="box2">
+        <div class="border-name">
+            <a asp-page-handler="DownloadFile" asp-route-documentationId="@documentationFile.Id">@documentationFile.Name</a>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="post" asp-page-handler="DeleteFile">
+                    <input type="hidden" name="categoryName" onclick="return(beforeDelete())" value="@documentationFile.CategoryName" />
+                    <input type="hidden" name="documentationId" value="@documentationFile.Id"/>
+                    <button class="btn delete btn-secondary text-color">Delete File</button>
+                </form>
+            </div>
+        </div>
+    </section>
+}
+<div class="col">
+    <button class="btn button btn-secondary btn-success2"><a asp-page="Files/Create" asp-route-categoryName="@Model.FormCategory.Name" class="text-white">Add File</a></button>
+</div>
+
+<h2>Links</h2>
+@foreach (var documentationUrl in Model.FormCategory.DocumentationUrls)
+{
+    <section class="box2">
+        <div>
+            <div class="border-name">
+                <a href=@documentationUrl.Url target="_blank">@documentationUrl.Name</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form method="post" asp-page-handler="DeleteUrl">
+                    <input type="hidden" name="categoryName" onclick="return(beforeDelete())" value="@documentationUrl.CategoryName"/>
+                    <input type="hidden" name="documentationId" value="@documentationUrl.Id"/>
+                    <button class="btn delete btn-secondary text-color">Delete URL</button>
+                </form>
+            </div>
+        </div>
+    </section>
+}
+<div class="col">
+    <button class="btn button btn-secondary btn-success2"><a class="text-white" asp-page="Urls/Create" asp-route-categoryName="@Model.FormCategory.Name">Add URL</a></button>
+</div>

@@ -1,0 +1,39 @@
+@page
+@model UpdateModel
+@{
+    ViewData["Title"] = "(Admin) Buildings - Update";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h1 class="heading1">Update Staff</h1>
+<script language='javascript'>
+
+    function beforeDelete() { return (confirm('Are you sure you want to delete the selected staff member?')); }
+
+</script>
+<div>
+    <form method="post" asp-page-handler="Delete">
+        <button class="btn delete btn-secondary text-color" name="emailAddress" onclikc="return(beforeDelete())" value="@Model.EmailAddress">Delete</button>
+    </form>
+</div>
+<div>
+    <form method="post">
+        <div class="editborder">
+            <label asp-for="EmailAddress">@Html.DisplayNameFor(model => model.EmailAddress)</label>
+            <input asp-for="EmailAddress" class="form-control" readonly />
+
+            <input type="hidden" asp-for="Staff.UserObjectId"/>
+            
+            <label asp-for="Staff.Role">@Html.DisplayNameFor(model => model.Staff.Role)</label>
+            <input asp-for="Staff.Role" class="form-control" />
+            <span asp-validation-for="Staff.Role"></span>
+        </div>
+        <button class="btn button btn-secondary btn-success">Save staff member</button>
+    </form>
+    
+    @Html.ValidationMessage("ActiveDirectory")
+</div>
+</body>
+</html>

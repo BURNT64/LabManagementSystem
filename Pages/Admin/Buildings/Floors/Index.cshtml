@@ -1,0 +1,45 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "(Admin) Building Floors - Index";
+}
+
+<h1 class="Headings-marg">Floors</h1>
+<div class="buttonadd">
+    <button class="btn button btn-secondary btn-success"><a class="text-white" asp-page="Create" asp-route-buildingName="@Model.Building.Name">Add Floor</a></button>
+</div>
+
+<div class="contacts">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var floor in Model.Building.Floors)
+                {
+                    <tr>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@floor.Name</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4"><a asp-page="Update" asp-route-floorId="@floor.Id">Edit</a></td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">
+                            <script language='javascript'>
+                                                                                                        
+                                function beforeDelete() { return (confirm('Are you sure you want to delete the selected item?}
+                                                                                                        
+                            </script>
+                            <form method="post" asp-page-handler="Delete">
+                                <input type="hidden" name="buildingName" onclick="return(beforeDelete())" value="@floor.BuildingName"/>
+                                <input type="hidden" name="floorId" value="@floor.Id"/>
+                                <button>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

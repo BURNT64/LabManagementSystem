@@ -1,0 +1,26 @@
+@page
+@model UpdateModel
+@{
+    ViewData["Title"] = "(Admin) Building Floors - Update";
+}
+
+<h1 class="heading1">Update Floor</h1>
+<div box2>
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Floor.Id"/>
+        
+        <label asp-for="Floor.Name">@Html.DisplayNameFor(model => model.Floor.Name)</label>
+        <input asp-for="Floor.Name" class="form-control"/>
+        <span asp-validation-for="Floor.Name"></span>
+
+        <input type="hidden" asp-for="Floor.BuildingName"/>
+        
+        <label asp-for="MapImage">@Html.DisplayNameFor(model => model.MapImage)</label>
+        <input asp-for="MapImage" class="form-control"/>
+        <span asp-validation-for="MapImage"></span>
+
+        <button class="btn button btn-secondary btn-success">Update</button>
+    </form>
+    
+    @Html.ValidationMessage("Database")
+</div>

@@ -1,0 +1,27 @@
+@page
+@model CreateModel
+@{
+    ViewData["Title"] = "(Admin) Room Documentation - Create URL";
+}
+<script language='javascript'>
+
+    function submitted() { alert('Submitted'); }
+
+</script>
+<h1 class="heading1">Room Documentation - Add URL</h1>
+<div class="box2">
+    <form method="post" onsubmit="return(submitted())">
+        
+        <input type="hidden" asp-for="RoomDocumentationUrl.RoomCode">
+
+        <label asp-for="RoomDocumentationUrl.Url">@Html.DisplayNameFor(model => model.RoomDocumentationUrl.Url)</label>
+        <input asp-for="RoomDocumentationUrl.Url" class="form-control"/>
+        <span asp-validation-for="RoomDocumentationUrl.Url"></span>
+        
+        <label asp-for="RoomDocumentationUrl.Name">@Html.DisplayNameFor(model => model.RoomDocumentationUrl.Name)</label>
+        <input asp-for="RoomDocumentationUrl.Name" class="form-control"/>
+        <span asp-validation-for="RoomDocumentationUrl.Name"></span>
+
+        <button class="btn-success">Add</button>
+    </form>
+</div>

@@ -1,0 +1,52 @@
+@page
+@model UpdateModel
+@{
+    ViewData["Title"] = "(Admin) Rooms - Update";
+}
+
+<h1 class="heading1">Update Room</h1>
+<a href="https://www.image-map.net">Map Point Generator</a>
+<div class="box2">
+    <form method="post">
+        <label asp-for="Room.Code">@Html.DisplayNameFor(model => model.Room.Code)</label>
+        <input asp-for="Room.Code" class="form-control" readonly/>
+        <span asp-validation-for="Room.Code"></span>
+
+        <label asp-for="Room.Name">@Html.DisplayNameFor(model => model.Room.Name)</label>
+        <input asp-for="Room.Name" class="form-control"/>
+        <span asp-validation-for="Room.Name"></span>
+
+        <label asp-for="Room.TimetableUrl">@Html.DisplayNameFor(model => model.Room.TimetableUrl)</label>
+        <input asp-for="Room.TimetableUrl" class="form-control"/>
+        <span asp-validation-for="Room.TimetableUrl"></span>
+
+        <label asp-for="Room.FloorId">@Html.DisplayNameFor(model => model.Room.FloorId)</label>
+        <select asp-for="Room.FloorId">
+            @foreach (var floor in await Model.FloorRepository.SelectAll())
+            {
+                <option value="@floor.Id">(@floor.BuildingName) @floor.Name</option>
+            }
+        </select>
+        <span asp-validation-for="Room.FloorId"></span>
+
+        <input type="hidden" asp-for="RoomMapHotspot.RoomCode">
+        
+        <label asp-for="RoomMapHotspot.PointOneX">@Html.DisplayNameFor(model => model.RoomMapHotspot.PointOneX)</label>
+        <input asp-for="RoomMapHotspot.PointOneX" class="form-control"/>
+        <span asp-validation-for="RoomMapHotspot.PointOneX"></span>
+
+        <label asp-for="RoomMapHotspot.PointOneY">@Html.DisplayNameFor(model => model.RoomMapHotspot.PointOneY)</label>
+        <input asp-for="RoomMapHotspot.PointOneY" class="form-control"/>
+        <span asp-validation-for="RoomMapHotspot.PointOneY"></span>
+
+        <label asp-for="RoomMapHotspot.PointTwoX">@Html.DisplayNameFor(model => model.RoomMapHotspot.PointTwoX)</label>
+        <input asp-for="RoomMapHotspot.PointTwoX" class="form-control"/>
+        <span asp-validation-for="RoomMapHotspot.PointTwoX"></span>
+
+        <label asp-for="RoomMapHotspot.PointTwoY">@Html.DisplayNameFor(model => model.RoomMapHotspot.PointTwoY)</label>
+        <input asp-for="RoomMapHotspot.PointTwoY" class="form-control"/>
+        <span asp-validation-for="RoomMapHotspot.PointTwoY"></span>
+
+        <button class="btn button btn-secondary btn-success">Update</button>
+    </form>
+</div>

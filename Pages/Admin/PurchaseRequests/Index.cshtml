@@ -1,0 +1,38 @@
+@page
+@using LabManagementSystem.API.ActiveDirectory
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IndexModel
+@{
+    ViewData["Title"] = "Admin - Purchase Requests - Index";
+}
+
+<h1 class="heading1">Purchase Requests</h1>
+<div class="contacts">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Requester</th>
+                    <th>Supplier</th>
+                    <th>Item Code</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var purchaseRequest in Model.PendingPurchaseRequests)
+                {
+                    var user = await Model.ActiveDirectoryUserRepository.GetUser(purchaseRequest.RequesterObjectId);
+                    string emailAddress = user != null ? ActiveDirectoryUserRepository.GetUserEmail(user) : "Unknown";
+
+                    <tr>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@emailAddress</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@purchaseRequest.Supplier</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@purchaseRequest.ItemCode</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4"><a asp-page="Read" asp-route-requestId="@purchaseRequest.Id">View</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

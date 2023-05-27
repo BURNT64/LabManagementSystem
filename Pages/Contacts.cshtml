@@ -1,0 +1,39 @@
+﻿@page
+@using LabManagementSystem.API.ActiveDirectory
+@model LabManagementSystem.Pages.ContactsModel
+@{
+    ViewData["Title"] = "Contact";
+}
+
+<h1 class="heading1">Contacts</h1>
+<div class="contacts">
+    <div class="contact-lists">
+        @foreach (var staff in await Model.StaffRepository.SelectAll())
+        {
+            var user = await Model.ActiveDirectoryUserRepository.GetUser(staff.UserObjectId);
+            if (user == null) continue;
+
+            string? encodedProfilePictureData = await Model.ActiveDirectoryUserRepository.GetUserProfilePictureBase64(user);
+            string profilePictureSrc = encodedProfilePictureData == null ? "~/images/avatar.png" : $"data:image/jpeg;base64,{encodedProfilePictureData}";
+            
+            string fullName = user.GivenName + " " + user.Surname;
+            string role = staff.Role;
+            string emailAddress = ActiveDirectoryUserRepository.GetUserEmail(user);
+            <div class="shop-item">
+                <div>
+                    <img class="diplayMenuImg" src="@profilePictureSrc" alt="Profile Picture"/>
+                </div>
+                <div>
+                    @fullName
+                </div>
+                <div>
+                    @role
+                </div>
+                <div>
+                    @emailAddress
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

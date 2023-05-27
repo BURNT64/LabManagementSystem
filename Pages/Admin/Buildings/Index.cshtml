@@ -1,0 +1,45 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "(Admin) Buildings - Index";
+}
+
+<h1 class="heading1">Buildings</h1>
+<div class="buttonadd">
+    <button class="btn button btn-secondary btn-success"><a class="text-white" asp-page="Create">Add Building</a></button>
+</div>
+
+<div class="contacts">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Campus</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var building in await Model.BuildingRepository.SelectAll())
+                {
+                    <tr>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@building.Name</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">@building.CampusName</td>
+                        <td class="col-xs-4 col-sm-4 col-md-4"><a asp-page="Update" asp-route-buildingName="@building.Name">Edit</a></td>
+                        <td class="col-xs-4 col-sm-4 col-md-4"><a asp-page="Floors/Index" asp-route-buildingName="@building.Name">Edit Floors</a></td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">
+                            <script language='javascript'>             
+                                function beforeDelete() { return (confirm('Are you sure you want to delete the selected bulding? Deleting a building will delete all associated data.')); }
+                            </script>
+                            <form method="post" asp-page-handler="Delete">
+                                <button name="buildingName" class="btn-Delete" onclick="return(beforeDelete())" value="@building.Name">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

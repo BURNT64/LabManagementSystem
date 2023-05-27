@@ -1,0 +1,125 @@
+@page
+@using LabManagementSystem.API.ActiveDirectory
+@model RequestExistingModel
+@{
+    ViewData["Title"] = "Request Existing Resource";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+    <div>
+        <h1 class="heading1">Request existing resource(s)</h1>
+        <p class="p1">Please complete and submit the following form.</p>
+    </div>
+    <div asp-validation-summary="All">
+        <form action="https://getform.io/f/c3d08807-1708-4a59-aab3-4e9c1eee1e27" method="POST">
+            <div class="container">
+                <div class="form-group row">
+                    <div class="col-8">
+                         @{
+                             var userId = ActiveDirectoryUserRepository.GetUserObjectId(User);
+                             var user = await Model.ActiveDirectoryUserRepository.GetUser(userId);
+                             if (user == null) return;
+                             string fullName = user.GivenName + " " + user.Surname;
+                         }
+                         <input type="hidden" value="@fullName" name="Requesters full name" id="fullName" class="form-width" required/>
+                        <section class="box">
+                            <label for="date" class="h4">Date of Request</label><br/><label class="h6">(Please enter today's date)</label>
+                            <input type="datetime-local" name="Request Date" id="requestDate" class="form-width" value="2023-05-01" min="1754-01-01" max="9999-12-30" required/>
+                        </section>
+
+                         <section class="box">
+                             <label for="equipmentName">Equipment</label>
+                             <select id="equipmentName" name="Equipment">
+                                 <option value="" disabled selected>Select an equipment</option>
+                                 @foreach (var equipment in await Model.EquipmentRepository.SelectAll())
+                                 {
+                                     <option value="@equipment.Name">@equipment.Name</option>
+                                 }
+                             </select>
+                             <div class="col">
+                                 <label for="EquipmentQuantity"> Equipment Quantity</label>
+                                 <input type="number" for="EquipmentQuantity" name="Equipment Quantity" id="EquipmentQuantity" class="form-width" min="0">
+                             </div>
+                         </section>
+                         
+                         <section class="box">
+                             <label for="chemicalName">Chemical</label>
+                             <select id="chemicalName" name="Chemical">
+                                 <option value="" disabled selected>Select a chemical</option>
+                                 @foreach (var chemical in await Model.ChemicalRepository.SelectAll())
+                                 {
+                                     <option value="@chemical.Name">@chemical.Name</option>
+                                 }
+                             </select>
+                             <div class="col">
+                                 <label for="ChemicalQuantity"> Chemical Quantity</label>
+                                 <input type="number" for="ChemicalQuantity" name="Chemical Quantity" id="ChemicalQuantity" class="form-width" min="0">
+                             </div>
+                         </section>
+                         
+                         <section class="box">
+                             <label for="roomName">Lab/Room</label>
+                             <select id="roomName" name="Lab/Room">
+                                 <option value="" disabled selected>Select a lab / room</option>
+                                 @foreach (var room in await Model.RoomRepository.SelectAll())
+                                 {
+                                     <option value="@room.Name">@room.Name</option>
+                                 }
+                             </select>
+                         </section>
+                         
+                         <section class="box">
+                             <label for="staffName">Staff</label>
+                             <select id="staffName" name="Staff">
+                                 <option value="" disabled selected>Select a staff member</option>
+                                 @foreach (var staff in await Model.StaffRepository.SelectAll())
+                                 {
+                                     var staffMember = await Model.ActiveDirectoryUserRepository.GetUser(staff.UserObjectId);
+                                     if (staffMember == null) continue;
+                                     
+                                     string fullNameStaff = staffMember.GivenName + " " + staffMember.Surname;
+                                     <option value="@fullNameStaff">@fullNameStaff</option>
+                                 }
+                             </select>
+                         </section>
+                         
+                    </div>
+
+                    <div class="col">
+                        <section class="box">
+                            <label class="h4">Please select the date and time you require the resource(s) from and to.</label>
+                            <div class="col">
+                                <label for="startDate" class="h4">Start Date & Time</label>
+                                <input type="datetime-local" name="Start Date" id="startDate" class="form-width" required/>
+                            </div>
+                            <div class="col">
+                                <label for="endDate" class="h4">End Date & Time</label>
+                                <input type="datetime-local" name="End Date" id="endDate" class="form-width" required/>
+                            </div>
+                            <script>
+                                let start = document.getElementById("startDate");
+                                let end = document.getElementById("endDate");
+                                
+                                start.addEventListener('change', function() {
+                                    if (start.value)
+                                        end.min = start.value;
+                                }, false);
+                                end.addEventListener('change', function() {
+                                    if (end.value)
+                                        start.max = end.value;
+                                }, false);
+                            </script>
+                        </section>
+                        <button type="submit" class="btn button btn-secondary btn-success">Submit Form</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

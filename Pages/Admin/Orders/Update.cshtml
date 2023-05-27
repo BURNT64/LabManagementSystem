@@ -1,0 +1,24 @@
+@page
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model UpdateModel
+@{
+    ViewData["Title"] = "(Admin) Orders - Update";
+}
+
+<h1 class="Headings-marg">Update Order</h1>
+<div>
+    <form method="post">
+        <div class="editborder">
+            <input type="hidden" asp-for="Order.PurchaseRequestId"/>
+            <label asp-for="Order.PredictedDate">@Html.DisplayNameFor(model => model.Order.PredictedDate)</label>
+            <input asp-for="Order.PredictedDate" class="form-control" min="1754-01-01" max="9999-12-30" />
+        </div>   
+        <button class="btn button btn-secondary btn-success">Update</button>
+    </form>
+
+    <form method="post" asp-page-handler="Delete">
+        <button name="requestId" class="btn button btn-secondary btn-success" value="@Model.Order.PurchaseRequestId">Delete</button>
+    </form>
+    
+    <div asp-validation-summary="All"></div>
+</div>

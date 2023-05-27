@@ -1,0 +1,78 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "(Admin) Room Documentation - Index";
+}
+
+<h1 class="heading1">Room Documentation</h1>
+<script language='javascript'>
+
+    function beforeDelete() { return (confirm('Are you sure you want to delete the selected documentation?')); }
+
+</script>
+<div class="button-container">
+    <div class="button-group">
+        <button class="btn button btn-secondary btn-success"><a class="text-white" asp-page="Files/Create" asp-route-roomCode="@Model.Room.Code">Add File</a></button>
+        <button class="btn button btn-secondary btn-success"><a class="text-white" asp-page="Urls/Create" asp-route-roomCode="@Model.Room.Code">Add URL</a></button>
+    </div>
+</div>
+
+<div class="contacts">
+<div class="table-container">
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Files</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var roomDocumentationFile in Model.Room.DocumentationFiles)
+                {
+                    <tr>
+                        <td class="col-xs-4 col-sm-4 col-md-4"><a asp-page-handler="DownloadFile" asp-route-documentationId="@roomDocumentationFile.Id">@roomDocumentationFile.Name</a></td>
+                        <td class="col-xs-4 col-sm-4 col-md-4">
+                            <form method="post" asp-page-handler="DeleteFile">
+                                <input type="hidden" onclick="return(beforeDelete()) "name="roomCode" value="@Model.Room.Code">
+                                <input type="hidden" name="documentationId" value="@roomDocumentationFile.Id" />
+                                <button>Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<div class="contacts">
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>URLs</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var roomDocumentationUrl in Model.Room.DocumentationUrls)
+                    {
+                        <tr>
+                            <td class="col-xs-4 col-sm-4 col-md-4"><a href="@roomDocumentationUrl.Url">@roomDocumentationUrl.Name</a></td>
+                            <td class="col-xs-4 col-sm-4 col-md-4">
+                                <form method="post" asp-page-handler="DeleteUrl">
+                                    <input type="hidden" name="roomCode" value="@Model.Room.Code">
+                                    <input type="hidden" name="documentationId" value="@roomDocumentationUrl.Id" />
+                                    <button>Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

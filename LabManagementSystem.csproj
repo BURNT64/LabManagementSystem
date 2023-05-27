@@ -1,0 +1,98 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>LabManagementSystem</RootNamespace>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <ScopedCssEnabled>false</ScopedCssEnabled>
+    </PropertyGroup>
+  
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="7.0.5" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.5" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.5" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.5" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.5" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.Identity.Web" Version="2.11.0" />
+      <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="2.11.0" />
+      <PackageReference Include="Microsoft.Identity.Web.UI" Version="2.11.0" />
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="7.0.6" />
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.6" />
+      <PackageReference Include="System.DirectoryServices" Version="7.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Pages\.DS_Store" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Data\Migrations\" />
+      <Folder Include="wwwroot\css\" />
+      <Folder Include="wwwroot\js\" />
+      <Folder Include="wwwroot\lib\bootstrap\" />
+      <Folder Include="wwwroot\lib\bootstrap\dist\css\" />
+      <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
+      <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\" />
+      <Folder Include="wwwroot\lib\jquery-validation\" />
+      <Folder Include="wwwroot\lib\jquery-validation\dist\" />
+      <Folder Include="wwwroot\lib\jquery\" />
+      <Folder Include="wwwroot\lib\jquery\dist\" />
+      <Folder Include="wwwroot\lib\scripts\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Admin\RoomDocumentation\AddRoomDocumentation.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Laboratories\AddRoom.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Laboratories\EditRoom.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Laboratories\Laboratories.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Laboratories\ViewRoom.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Floor\Floor.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Buildings\Floors\Rooms\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Buildings\Floors\Rooms\Documentation\Files\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Buildings\Floors\Rooms\Documentation\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Buildings\Floors\Rooms\Documentation\Urls\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Buildings\Floors\Rooms\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Buildings\Floors\Rooms\Update.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Request\Requests.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Request\ViewExisting.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Request\ViewPurchase.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Delivery\DeleteDeliveries.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Delivery\Deliveries.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Delivery\EditDeliveries.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\Delivery\ViewDeliveries.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\ResourceRequests\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\ResourceRequests\Read.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\ExistingResourceOrders\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Admin\ExistingResourceOrders\UpdateRequestOrders.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Pages\Admin\Laboratories\AddRoom.cshtml" />
+      <UpToDateCheckInput Remove="Pages\Admin\ResourceRequests\Index.cshtml" />
+      <UpToDateCheckInput Remove="Pages\Admin\ResourceRequests\Read.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Pages\Admin\Rooms\Create.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\Rooms\Documentation\Files\Create.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\Rooms\Documentation\Index.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\Rooms\Documentation\Urls\Create.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\Rooms\Index.cshtml" />
+      <AdditionalFiles Include="Pages\Admin\Rooms\Update.cshtml" />
+    </ItemGroup>
+
+</Project>

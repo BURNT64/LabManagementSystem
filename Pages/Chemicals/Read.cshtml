@@ -1,0 +1,76 @@
+﻿@page
+@using LabManagementSystem.API.ActiveDirectory
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ReadModel
+@{
+    ViewData["Title"] = "Chemicals - Read";
+}
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<h1 class="heading1">Chemical</h1>
+<div class="box2">
+    <label asp-for="Chemical.Name">@Html.DisplayNameFor(model => model.Chemical.Name)</label>
+    <input asp-for="Chemical.Name" class="form-control" readonly/>
+
+    <label asp-for="Chemical.Formula">@Html.DisplayNameFor(model => model.Chemical.Formula)</label>
+    <input asp-for="Chemical.Formula" class="form-control" readonly/>
+
+    <label asp-for="Chemical.LocationRoomCode">@Html.DisplayNameFor(model => model.Chemical.LocationRoomCode)</label>
+    <input asp-for="Chemical.LocationRoomCode" class="form-control" readonly/>
+
+    <label asp-for="Chemical.LocationDescription">@Html.DisplayNameFor(model => model.Chemical.LocationDescription)</label>
+    <input asp-for="Chemical.LocationDescription" class="form-control" readonly/>
+
+    <label asp-for="Chemical.UnitType">@Html.DisplayNameFor(model => model.Chemical.UnitType)</label>
+    <input asp-for="Chemical.UnitType" class="form-control" readonly/>
+
+    <label asp-for="Chemical.TriggerLevel">@Html.DisplayNameFor(model => model.Chemical.TriggerLevel)</label>
+    <input asp-for="Chemical.TriggerLevel" class="form-control" readonly/>
+
+    <label asp-for="Chemical.StockLevel">@Html.DisplayNameFor(model => model.Chemical.StockLevel)</label>
+    <input asp-for="Chemical.StockLevel" class="form-control" readonly/>
+
+    <label asp-for="Chemical.Supplier">@Html.DisplayNameFor(model => model.Chemical.Supplier)</label>
+    <input asp-for="Chemical.Supplier" class="form-control" readonly/>
+
+    <label asp-for="Chemical.ReviewDate">@Html.DisplayNameFor(model => model.Chemical.ReviewDate)</label>
+    <input asp-for="Chemical.ReviewDate" class="form-control" readonly/>
+
+    @{
+        var user = await Model.ActiveDirectoryUserRepository.GetUser(Model.Chemical.OrderedByObjectId);
+        string orderedByEmailAddress = user != null ? ActiveDirectoryUserRepository.GetUserEmail(user) : "Unknown";
+    }
+    
+    <label>Ordered By</label>
+    <input value="@orderedByEmailAddress" class="form-control" readonly>
+    
+    <label asp-for="Chemical.Hazards">@Html.DisplayNameFor(model => model.Chemical.Hazards)</label>
+    <input asp-for="Chemical.Hazards" class="form-control" readonly/>
+    
+    <label asp-for="Chemical.ExpireDate">@Html.DisplayNameFor(model => model.Chemical.ExpireDate)</label>
+    <input asp-for="Chemical.ExpireDate" class="form-control" readonly/>
+
+    <label asp-for="Chemical.PurityGrade">@Html.DisplayNameFor(model => model.Chemical.PurityGrade)</label>
+    <input asp-for="Chemical.PurityGrade" class="form-control" readonly/>
+    
+    <label asp-for="Chemical.BatchCode">@Html.DisplayNameFor(model => model.Chemical.BatchCode)</label>
+    <input asp-for="Chemical.BatchCode" class="form-control" readonly/>
+    
+    <label asp-for="Chemical.CasCode">@Html.DisplayNameFor(model => model.Chemical.CasCode)</label>
+    <input asp-for="Chemical.CasCode" class="form-control" readonly/>
+    
+    <label asp-for="Chemical.ProductCode">@Html.DisplayNameFor(model => model.Chemical.ProductCode)</label>
+    <input asp-for="Chemical.ProductCode" class="form-control" readonly/>
+
+    <label asp-for="Chemical.Purpose">@Html.DisplayNameFor(model => model.Chemical.Purpose)</label>
+    <input asp-for="Chemical.Purpose" class="form-control" readonly/>
+    
+    <label asp-for="Chemical.MsdsUrl">@Html.DisplayNameFor(model => model.Chemical.MsdsUrl)</label>
+    <input asp-for="Chemical.MsdsUrl" class="form-control" readonly/>
+    
+    <label asp-for="Chemical.IsCoshhCompleted">@Html.DisplayNameFor(model => model.Chemical.IsCoshhCompleted)</label>
+    <input asp-for="Chemical.IsCoshhCompleted" disabled/>
+</div>
+</body>
+</html>

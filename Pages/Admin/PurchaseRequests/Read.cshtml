@@ -1,0 +1,70 @@
+@page
+@using LabManagementSystem.API.ActiveDirectory
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ReadModel
+@{
+    ViewData["Title"] = "Admin - Purchase Requests - Read";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+<h1 class="heading1">Purchase Request</h1>
+<div class="box2">
+    @{
+        var user = await Model.ActiveDirectoryUserRepository.GetUser(Model.PurchaseRequest.RequesterObjectId);
+        string emailAddress = user != null ? ActiveDirectoryUserRepository.GetUserEmail(user) : "Unknown";
+    }
+
+    <h2 class="sub-heading">Supplier</h2>
+    <input type="text" readonly class="readonly-textbox" value="@Model.PurchaseRequest.Supplier" />
+
+    <h2 class="sub-heading">Item Description</h2>
+    <input type="text" readonly class="readonly-textbox" value="@Model.PurchaseRequest.Description" />
+
+    <h2 class="sub-heading">Unit Price (without VAT)</h2>
+    <input type="text" readonly class="readonly-textbox" value="£@Model.PurchaseRequest.UnitPrice" />
+
+    <h2 class="sub-heading">Quantity</h2>
+    <input type="text" readonly class="readonly-textbox" value="@Model.PurchaseRequest.Quantity" />
+
+    <h2 class="sub-heading">Total Price (without VAT)</h2>
+    <input type="text" readonly class="readonly-textbox" value="£@(Model.PurchaseRequest.UnitPrice * Model.PurchaseRequest.Quantity)" />
+
+    <h2 class="sub-heading">Budget Code</h2>
+    <input type="text" readonly class="readonly-textbox" value="@Model.PurchaseRequest.BudgetCode" />
+
+    <h2 class="sub-heading">Delivery Site</h2>
+    <input type="text" readonly class="readonly-textbox" value="@Model.PurchaseRequest.DeliveryBuildingName" />
+
+    <h2 class="sub-heading">Date</h2>
+    <input type="text" readonly class="readonly-textbox" value="@Model.PurchaseRequest.Date.Day/@Model.PurchaseRequest.Date.Month/@Model.PurchaseRequest.Date.Year" />
+
+    <h2 class="sub-heading">URL</h2>
+    <input type="text" readonly class="readonly-textbox" value="@Model.PurchaseRequest.Url" />
+
+    <h2 class="sub-heading">COSHH Assessment Required Prior to use in Lab/Workshop Tasks or Processes?</h2>
+    <input type="text" readonly class="readonly-textbox" value="@(Model.PurchaseRequest.IsCOSHHRequired ? "Yes" : "No")" />
+
+    @{
+        if (!Model.PurchaseRequest.IsProcessed)
+        {
+            <div class="action-buttons">
+                <form method="post" asp-page-handler="Approve">
+                    <button name="requestId" value="@Model.PurchaseRequest.Id" class="btn-approve">Approve</button>
+                </form>
+                <form method="post" asp-page-handler="Decline">
+                    <button name="requestId" value="@Model.PurchaseRequest.Id" class="btn-decline">Decline</button>
+                </form>
+            </div>
+        }
+        else
+        {
+            <div style="height: 50px;"></div> <!-- Add spacing -->
+        }
+    }
+</div>
+</body>
+</html>

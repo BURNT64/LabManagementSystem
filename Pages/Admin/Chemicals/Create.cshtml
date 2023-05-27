@@ -1,0 +1,98 @@
+﻿@page
+@model CreateModel
+@{
+    ViewData["Title"] = "(Admin) Chemicals - Create";
+}
+<script language='javascript'>
+
+    function submitted() { alert('Submitted'); }
+
+</script>
+
+
+<h1 class="heading1">Add Chemical</h1>
+<div>
+    
+        <form method="post" enctype="multipart/form-data" onsubmit="return(submitted())">
+        <div class="box2">
+        <label asp-for="Chemical.Name">@Html.DisplayNameFor(model => model.Chemical.Name)</label>
+        <input asp-for="Chemical.Name" class="form-control"/>
+        <span asp-validation-for="Chemical.Name"></span>
+        
+        <label asp-for="Chemical.Formula">@Html.DisplayNameFor(model => model.Chemical.Formula)</label>
+        <input asp-for="Chemical.Formula" class="form-control"/>
+        <span asp-validation-for="Chemical.Formula"></span>
+
+        <label asp-for="Chemical.LocationRoomCode">@Html.DisplayNameFor(model => model.Chemical.LocationRoomCode)</label>
+        <select asp-for="Chemical.LocationRoomCode" class="form-control">
+            @foreach (var room in await Model.RoomRepository.SelectAll())
+            {
+                <option value="@room.Code">@room.Code</option>
+            }
+        </select>
+        <span asp-validation-for="Chemical.LocationRoomCode"></span>
+
+        <label asp-for="Chemical.LocationDescription">@Html.DisplayNameFor(model => model.Chemical.LocationDescription)</label>
+        <input asp-for="Chemical.LocationDescription" class="form-control"/>
+        <span asp-validation-for="Chemical.LocationDescription"></span>
+
+        <label asp-for="Chemical.UnitType">@Html.DisplayNameFor(model => model.Chemical.UnitType)</label>
+        <input asp-for="Chemical.UnitType" class="form-control"/>
+        <span asp-validation-for="Chemical.UnitType"></span>
+
+        <label asp-for="Chemical.TriggerLevel">@Html.DisplayNameFor(model => model.Chemical.TriggerLevel)</label>
+        <input asp-for="Chemical.TriggerLevel" class="form-control"/>
+        <span asp-validation-for="Chemical.TriggerLevel"></span>
+
+        <label asp-for="Chemical.StockLevel">@Html.DisplayNameFor(model => model.Chemical.StockLevel)</label>
+        <input asp-for="Chemical.StockLevel" class="form-control"/>
+        <span asp-validation-for="Chemical.StockLevel"></span>
+
+        <label asp-for="Chemical.Supplier">@Html.DisplayNameFor(model => model.Chemical.Supplier)</label>
+        <input asp-for="Chemical.Supplier" class="form-control"/>
+        <span asp-validation-for="Chemical.Supplier"></span>
+
+        <label asp-for="Chemical.ReviewDate">@Html.DisplayNameFor(model => model.Chemical.ReviewDate)</label>
+        <input asp-for="Chemical.ReviewDate" class="form-control"/>
+        <span asp-validation-for="Chemical.ReviewDate"></span>
+
+        <label asp-for="Chemical.Hazards">@Html.DisplayNameFor(model => model.Chemical.Hazards)</label>
+        <input asp-for="Chemical.Hazards" class="form-control"/>
+        <span asp-validation-for="Chemical.Hazards"></span>
+
+        <label asp-for="Chemical.ExpireDate">@Html.DisplayNameFor(model => model.Chemical.ExpireDate)</label>
+        <input asp-for="Chemical.ExpireDate" class="form-control"/>
+        <span asp-validation-for="Chemical.ExpireDate"></span>
+
+        <label asp-for="Chemical.PurityGrade">@Html.DisplayNameFor(model => model.Chemical.PurityGrade)</label>
+        <input asp-for="Chemical.PurityGrade" class="form-control"/>
+        <span asp-validation-for="Chemical.PurityGrade"></span>
+
+        <label asp-for="Chemical.BatchCode">@Html.DisplayNameFor(model => model.Chemical.BatchCode)</label>
+        <input asp-for="Chemical.BatchCode" class="form-control"/>
+        <span asp-validation-for="Chemical.BatchCode"></span>
+
+        <label asp-for="Chemical.CasCode">@Html.DisplayNameFor(model => model.Chemical.CasCode)</label>
+        <input asp-for="Chemical.CasCode" class="form-control"/>
+        <span asp-validation-for="Chemical.CasCode"></span>
+
+        <label asp-for="Chemical.ProductCode">@Html.DisplayNameFor(model => model.Chemical.ProductCode)</label>
+        <input asp-for="Chemical.ProductCode" class="form-control"/>
+        <span asp-validation-for="Chemical.ProductCode"></span>
+
+        <label asp-for="Chemical.Purpose">@Html.DisplayNameFor(model => model.Chemical.Purpose)</label>
+        <input asp-for="Chemical.Purpose" class="form-control"/>
+        <span asp-validation-for="Chemical.Purpose"></span>
+
+        <label asp-for="Chemical.MsdsUrl">@Html.DisplayNameFor(model => model.Chemical.MsdsUrl)</label>
+        <input asp-for="Chemical.MsdsUrl" class="form-control"/>
+        <span asp-validation-for="Chemical.MsdsUrl"></span>
+
+        <label asp-for="Chemical.IsCoshhCompleted">@Html.DisplayNameFor(model => model.Chemical.IsCoshhCompleted)</label>
+        <input asp-for="Chemical.IsCoshhCompleted"/>
+        <span asp-validation-for="Chemical.IsCoshhCompleted"></span>
+        </div>
+
+        <button class="btn-success">Create</button>
+    </form>
+</div>
